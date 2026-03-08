@@ -57,3 +57,37 @@ Reservar
 }
 
 mostrarHoteles()
+
+// =============================
+// INTEGRANTE 3
+// API CLIMA
+// =============================
+
+async function obtenerClima(ciudad) {
+
+try {
+
+const respuesta = await fetch(`https://wttr.in/${ciudad}?format=%t`)
+
+const clima = await respuesta.text()
+
+return clima
+
+} catch (error) {
+
+return "No disponible"
+
+}
+
+}
+
+// mostrar clima en consola
+hoteles.forEach(hotel=>{
+
+obtenerClima(hotel.ciudad).then(clima=>{
+
+console.log("Clima en " + hotel.ciudad + ": " + clima)
+
+})
+
+})
