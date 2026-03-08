@@ -115,3 +115,45 @@ return
 alert("Reserva realizada con éxito")
 
 })
+// =============================
+// INTEGRANTE 5
+// BUSCADOR
+// =============================
+
+document.getElementById("buscador").addEventListener("input",function(e){
+
+const texto = e.target.value.toLowerCase()
+
+container.innerHTML=""
+
+const filtrados = hoteles.filter(hotel=>
+hotel.nombre.toLowerCase().includes(texto)
+)
+
+filtrados.forEach(hotel=>{
+
+container.innerHTML += `
+
+<div class="col-md-4">
+
+<div class="card mb-4">
+
+<div class="card-body">
+
+<h5>${hotel.nombre}</h5>
+
+<p>Ciudad: ${hotel.ciudad}</p>
+
+<p>Precio: $${hotel.precio}</p>
+
+</div>
+
+</div>
+
+</div>
+
+`
+
+})
+
+})
