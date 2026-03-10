@@ -226,6 +226,24 @@ container.innerHTML += `
 
 })
 
+let usuarios = JSON.parse(localStorage.getItem("usuarios")) || []
+
+document.getElementById("registroForm").addEventListener("submit",(e)=>{
+
+e.preventDefault()
+
+const nombre = regNombre.value
+const email = regEmail.value
+const password = regPassword.value
+
+usuarios.push({nombre,email,password})
+
+localStorage.setItem("usuarios",JSON.stringify(usuarios))
+
+alert("Usuario registrado")
+
+})
+
 // FORMULARIO
 
 document.getElementById("formReserva").addEventListener("submit",(e)=>{
