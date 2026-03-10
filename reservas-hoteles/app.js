@@ -243,7 +243,80 @@ localStorage.setItem("usuarios",JSON.stringify(usuarios))
 alert("Usuario registrado")
 
 })
+function cargarPerfil(){
 
+const usuario = JSON.parse(localStorage.getItem("usuarioActivo"))
+
+if(usuario){
+
+document.getElementById("perfilNombre").innerText =
+"Nombre: " + usuario.nombre
+
+document.getElementById("perfilEmail").innerText =
+"Correo: " + usuario.email
+
+}
+
+}
+
+function cerrarSesion(){
+
+localStorage.removeItem("usuarioActivo")
+
+alert("Sesión cerrada")
+
+location.reload()
+
+}
+
+cargarPerfil()
+function mostrarReservas(){
+
+const usuario = JSON.parse(localStorage.getItem("usuarioActivo"))
+
+if(!usuario) return
+
+let reservas = JSON.parse(localStorage.getItem("reservas")) || []
+
+const lista = document.getElementById("listaReservas")
+
+lista.innerHTML = ""
+
+const misReservas = reservas.filter(r => r.usuario === usuario.email)
+
+misReservas.forEach((reserva,index)=>{
+
+lista.innerHTML += `
+
+<li class="list-group-item">
+
+${reserva.hotel}
+
+<button onclick="cancelarReserva(${index})"
+class="btn btn-sm btn-danger float-end">
+
+Cancelar
+
+</button>
+
+</li>
+
+`
+
+})
+
+}
+function cancelarReserva(index){
+
+let reservas = JSON.parse(localStorage.getItem("reservas")) || []
+
+reservas.splice(index,1)
+
+localStorage.setItem("reservas",JSON.stringify(reservas))
+
+mostrarReservas()
+
+}
 // FORMULARIO
 
 document.getElementById("formReserva").addEventListener("submit",(e)=>{
@@ -276,5 +349,7 @@ alert(`Reserva confirmada en ${hotel.nombre}`)
 
 })
 
+cargarPerfil()
+mostrarReservas()
 mostrarHoteles()
 cargarHotelesSelect()
