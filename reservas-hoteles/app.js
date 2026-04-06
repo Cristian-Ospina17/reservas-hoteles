@@ -27,3 +27,47 @@ const hoteles = [
 {nombre:"Hotel Colonial",ciudad:"Villa de Leyva",precio:115,personasMax:3,imagen:"https://images.unsplash.com/photo-1600585154340-be6161a56a0c"}
 
 ]
+
+function mostrarHoteles(){
+
+container.innerHTML=""
+
+hoteles.forEach((hotel,index)=>{
+
+container.innerHTML+=`
+
+<div class="col-md-4">
+
+<div class="card mb-4 shadow">
+
+<img src="${hotel.imagen}">
+
+<div class="card-body">
+
+<h5>${hotel.nombre}</h5>
+
+<p>${hotel.ciudad}</p>
+
+<p>${hotel.personasMax} huéspedes · 1 habitación · 1 cama · 1 baño</p>
+
+<p class="precio">$${hotel.precio} por noche</p>
+
+<a href="detalle.html?id=${index}" class="btn btn-primary w-100">
+
+Mostrar detalles
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+`
+
+})
+
+}
+
+mostrarHoteles()
