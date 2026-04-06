@@ -23,3 +23,48 @@
 <div class="container">
 
 <a class="navbar-brand" href="index.html">HotelApp</a>
+
+</div>
+
+</nav>
+
+<div class="container mt-5">
+
+<h2 class="text-center">Iniciar sesión</h2>
+
+<form class="col-md-4 mx-auto mt-4" id="formLogin" onsubmit="return manejarLogin(event)">
+
+<label>Email</label>
+
+<input type="email" class="form-control mb-3" id="emailLogin" required>
+
+<label>Contraseña</label>
+
+<input type="password" class="form-control mb-3" id="passwordLogin" required>
+
+<button type="submit" class="btn btn-primary w-100" id="btnLogin">
+Iniciar sesión
+</button>
+
+<p class="text-center mt-3">
+¿No tienes cuenta? <a href="registro.html">Regístrate</a>
+</p>
+
+</form>
+
+<script>
+function manejarLogin(event) {
+  event.preventDefault();
+  const email = document.getElementById('emailLogin').value;
+  const password = document.getElementById('passwordLogin').value;
+  
+  if (iniciarSesion(email, password)) {
+    window.location.href = 'index.html';
+  }
+}
+</script>
+
+</div>
+
+</body>
+</html>

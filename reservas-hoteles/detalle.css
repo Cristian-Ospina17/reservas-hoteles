@@ -1,0 +1,16 @@
+.detalle-container{
+max-width:800px;
+margin:auto;
+margin-top:100px;
+background:white;
+padding:30px;
+border-radius:15px;
+box-shadow:0 5px 20px rgba(0,0,0,0.1);
+}
+
+.detalle-container img{
+width:100%;
+border-radius:10px;
+margin-bottom:20px;
+}
+
