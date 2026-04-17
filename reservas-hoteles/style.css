@@ -128,3 +128,34 @@ padding:30px;
   padding: 15px;
   box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
+/* Quitar espacio solo en login y registro */
+body.auth-page {
+  padding-top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Tarjeta del formulario */
+.auth-container {
+  background: white;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+  width: 100%;
+  max-width: 400px;
+}
+
+/* Botones más modernos */
+.auth-container button {
+  border-radius: 10px;
+  padding: 10px;
+  font-weight: bold;
+}
+
+/* Inputs más bonitos */
+.auth-container input {
+  border-radius: 10px;
+  padding: 10px;
+}

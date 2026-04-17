@@ -18,11 +18,7 @@ function mostrarOpiniones() {
   cont.innerHTML = "";
 
   lista.forEach(o => {
-    cont.innerHTML += `
-      <div class="card p-2 mb-2">
-        ⭐ ${o.rating} - ${o.comentario}
-      </div>
-    `;
+    cont.innerHTML += `<div>⭐${o.rating} - ${o.comentario}</div>`;
   });
 }
 
@@ -34,17 +30,13 @@ window.enviarOpinion = function () {
   mostrarOpiniones();
 };
 
-// reserva
-window.reservar = function () {
-  const entrada = document.getElementById("entrada").value;
-  const salida = document.getElementById("salida").value;
+// pago
+window.mostrarPago = function(){
+  document.getElementById("metodosPago").classList.remove("hidden");
+}
 
-  if (!entrada || !salida) {
-    alert("Selecciona fechas");
-    return;
-  }
-
-  alert("Reserva confirmada ✅\nPago realizado 💳");
-};
+window.pagar = function(metodo){
+  alert("Pago realizado con " + metodo + " ✅");
+}
 
 mostrarOpiniones();
