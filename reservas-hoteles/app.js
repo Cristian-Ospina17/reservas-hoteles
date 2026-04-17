@@ -1,9 +1,11 @@
 import { hoteles } from "./data.js";
-import { promedioHotel } from "./reviews.js";
+import { promedioHotel, topHoteles } from "./reviews.js";
 
 const container = document.getElementById("hotelContainer");
+const topContainer = document.getElementById("topHoteles");
 
-function mostrarHoteles(lista = hoteles) {
+// mostrar hoteles
+function mostrarHoteles(lista) {
   container.innerHTML = "";
 
   lista.forEach((hotel, index) => {
@@ -12,13 +14,11 @@ function mostrarHoteles(lista = hoteles) {
     container.innerHTML += `
     <div class="col-md-4">
       <div class="card hotel-card">
-        <div class="img-container">
-          <img src="${hotel.imagen}">
-        </div>
-
+        <img src="${hotel.imagen}">
         <div class="card-body">
           <h5>${hotel.nombre}</h5>
           <p>${hotel.ciudad}</p>
+          <p>${hotel.personasMax} huéspedes</p>
           <p>⭐ ${rating || "Sin calificar"}</p>
           <p class="precio">$${hotel.precio}</p>
 
@@ -32,7 +32,26 @@ function mostrarHoteles(lista = hoteles) {
   });
 }
 
-// buscador
+// TOP
+function mostrarTop() {
+  const top = topHoteles(hoteles);
+
+  top.forEach(h => {
+    topContainer.innerHTML += `
+      <div class="col-md-4">
+        <div class="card hotel-card border-warning">
+          <img src="${h.imagen}">
+          <div class="card-body text-center">
+            <h5>${h.nombre}</h5>
+            <p>⭐ ${h.rating}</p>
+          </div>
+        </div>
+      </div>
+    `;
+  });
+}
+
+// BUSCADOR con fechas
 document.getElementById("buscador").addEventListener("input", e => {
   const texto = e.target.value.toLowerCase();
 
@@ -44,4 +63,5 @@ document.getElementById("buscador").addEventListener("input", e => {
   mostrarHoteles(filtrados);
 });
 
-mostrarHoteles();
+mostrarHoteles(hoteles);
+mostrarTop();

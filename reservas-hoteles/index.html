@@ -14,13 +14,29 @@
 
 <body onload="mostrarInfoUsuario()">
 
+<!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
 <div class="container">
 
-<a class="navbar-brand" href="index.html">HotelApp</a>
+<a class="navbar-brand d-flex align-items-center" href="index.html">
+<img src="https://cdn-icons-png.flaticon.com/512/139/139899.png" width="35" class="me-2">
+HotelApp
+</a>
 
 <div class="collapse navbar-collapse">
 <ul class="navbar-nav ms-auto">
+
+<li class="nav-item">
+<a class="nav-link" href="#destacados">Destacados</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link" href="#hoteles">Hoteles</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link" href="#reservas">Reservar</a>
+</li>
 
 <li class="nav-item" id="usuarioNav"></li>
 <li class="nav-item" id="registroNav"></li>
@@ -31,20 +47,74 @@
 </div>
 </nav>
 
+<!-- HERO -->
 <section class="hero">
 <div class="overlay">
 <div class="container text-center hero-content">
 <h1>Encuentra tu hotel ideal</h1>
 
-<input type="text" id="buscador" class="form-control buscador" placeholder="Buscar hotel o ciudad">
+<input type="text" id="buscador" class="form-control buscador" placeholder="Buscar hotel, ciudad o fecha">
 
 </div>
 </div>
 </section>
 
-<section class="container mt-5">
+<!-- DESTACADOS -->
+<section id="destacados" class="container mt-5">
+<h2 class="text-center mb-4">⭐ Hoteles destacados</h2>
+<div class="row" id="topHoteles"></div>
+</section>
+
+<!-- HOTELES -->
+<section id="hoteles" class="container mt-5">
+<h2 class="text-center mb-4">Todos los hoteles</h2>
 <div class="row" id="hotelContainer"></div>
 </section>
+
+<!-- SERVICIOS -->
+<section class="container mt-5">
+<h2 class="text-center mb-4">
+Servicios populares en alquileres vacacionales en Medellín
+</h2>
+
+<div class="row text-center">
+
+<div class="col-md-2 servicio">
+<img src="https://img.icons8.com/fluency/96/kitchen-room.png">
+<p>Cocina</p>
+</div>
+
+<div class="col-md-2 servicio">
+<img src="https://img.icons8.com/fluency/96/wifi.png">
+<p>Wifi</p>
+</div>
+
+<div class="col-md-2 servicio">
+<img src="https://img.icons8.com/fluency/96/swimming-pool.png">
+<p>Piscina</p>
+</div>
+
+<div class="col-md-3 servicio">
+<img src="https://img.icons8.com/fluency/96/parking.png">
+<p>Estacionamiento</p>
+</div>
+
+<div class="col-md-3 servicio">
+<img src="https://img.icons8.com/fluency/96/air-conditioner.png">
+<p>Aire acondicionado</p>
+</div>
+
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+<div class="container text-center">
+<p>HotelApp Colombia Antioquia Medellín</p>
+<p>© 2026 HotelApp, Inc.</p>
+<p>Privacidad · Términos</p>
+</div>
+</footer>
 
 <script type="module" src="app.js"></script>
 
@@ -55,22 +125,17 @@ function mostrarInfoUsuario() {
   const registroNav = document.getElementById('registroNav');
 
   if (usuario) {
-    usuarioNav.innerHTML = `
-      <span class="nav-link text-white">👤 ${usuario.nombre}</span>
-    `;
-
-    registroNav.innerHTML = `
-      <a class="nav-link text-danger" onclick="cerrarSesionYRedirigir()">Cerrar sesión</a>
-    `;
+    usuarioNav.innerHTML = `<span class="nav-link">👤 ${usuario.nombre}</span>`;
+    registroNav.innerHTML = `<a class="nav-link text-danger" onclick="cerrarSesionYRedirigir()">Cerrar sesión</a>`;
   } else {
-    usuarioNav.innerHTML = `<a class="nav-link" href="login.html">Login</a>`;
-    registroNav.innerHTML = `<a class="nav-link" href="registro.html">Registro</a>`;
+    usuarioNav.innerHTML = `<a class="nav-link" href="login.html">Iniciar sesión</a>`;
+    registroNav.innerHTML = `<a class="nav-link" href="registro.html">Registrarse</a>`;
   }
 }
 
 function cerrarSesionYRedirigir() {
   cerrarSesion();
-  window.location.href = 'login.html';
+  window.location.href = "login.html";
 }
 </script>
 
