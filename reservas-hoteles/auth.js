@@ -1,14 +1,15 @@
-// Guardar nuevo usuario
-function registrarUsuario(nombre, email, password) {
-  const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+import db from "./database.js";
 
-  if (usuarios.some(u => u.email === email)) {
-    alert('El email ya está registrado');
-    return false;
-  }
+// REGISTRAR USUARIO
+export function registrarUsuario(nombre, email, password) {
 
   if (!nombre || !email || !password) {
     alert('Completa todos los campos');
+    return false;
+  }
+
+  if (db.usuarios.some(u => u.email === email)) {
+    alert('El email ya está registrado');
     return false;
   }
 
@@ -19,18 +20,17 @@ function registrarUsuario(nombre, email, password) {
     password
   };
 
-  usuarios.push(nuevoUsuario);
-  localStorage.setItem('usuarios', JSON.stringify(usuarios));
+  db.usuarios.push(nuevoUsuario);
+  db.guardarUsuarios();
 
   alert('Cuenta creada correctamente');
   return true;
 }
 
-// Login
-function iniciarSesion(email, password) {
-  const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+// LOGIN
+export function iniciarSesion(email, password) {
 
-  const usuario = usuarios.find(
+  const usuario = db.usuarios.find(
     u => u.email === email && u.password === password
   );
 
@@ -44,25 +44,30 @@ function iniciarSesion(email, password) {
   return false;
 }
 
-function obtenerUsuarioActual() {
+// OBTENER USUARIO
+export function obtenerUsuarioActual() {
   return JSON.parse(localStorage.getItem('usuarioActual'));
 }
 
-function cerrarSesion() {
+// CERRAR SESIÓN
+export function cerrarSesion() {
   localStorage.removeItem('usuarioActual');
 }
 
-function hayUsuarioLogueado() {
+// VERIFICAR SI HAY USUARIO
+export function hayUsuarioLogueado() {
   return obtenerUsuarioActual() !== null;
 }
 
-function verificarAutenticacion() {
+// PROTEGER RUTAS
+export function verificarAutenticacion() {
   if (!hayUsuarioLogueado()) {
     window.location.href = 'login.html';
   }
 }
 
-function redirigirSiLogueado() {
+// REDIRIGIR SI YA ESTÁ LOGUEADO
+export function redirigirSiLogueado() {
   if (hayUsuarioLogueado()) {
     window.location.href = 'index.html';
   }
