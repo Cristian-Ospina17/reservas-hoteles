@@ -14,3 +14,24 @@ export function guardarOpinion(hotelId, comentario, rating) {
 export function obtenerOpiniones(hotelId) {
   return db.opiniones.filter(o => o.hotelId == hotelId);
 }
+// PROMEDIO DE HOTEL
+export function promedioHotel(hotelId) {
+  const opiniones = obtenerOpiniones(hotelId);
+
+  if (opiniones.length === 0) return 0;
+
+  const total = opiniones.reduce((sum, o) => sum + o.rating, 0);
+  return (total / opiniones.length).toFixed(1);
+}
+
+// TOP HOTELES
+export function topHoteles(hoteles) {
+  return hoteles
+    .map((h, i) => ({
+      ...h,
+      id: i,
+      rating: Number(promedioHotel(i))
+    }))
+    .sort((a, b) => b.rating - a.rating)
+    .slice(0, 3);
+}
