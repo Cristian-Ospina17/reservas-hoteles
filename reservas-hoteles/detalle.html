@@ -1,51 +1,49 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-
 <meta charset="UTF-8">
-
 <title>Detalle Hotel</title>
 
 <link rel="stylesheet" href="style.css">
-
-<script src=\"auth.js\"></script>
-
+<script src="auth.js"></script>
 </head>
 
 <body onload="verificarAutenticacion()">
 
-<div class="container mt-4">
+<div class="detalle-container">
 
 <h1 id="nombreHotel"></h1>
 
-<img id="imagenHotel" width="600">
+<img id="imagenHotel">
 
 <p id="descripcion"></p>
 
-<h3>Servicios</h3>
-
-<ul>
-
-<li>Piscina</li>
-<li>Wifi</li>
-<li>Gimnasio</li>
-<li>Jacuzzi</li>
-<li>Estacionamiento gratuito</li>
-
-</ul>
-
 <h3>Reservar</h3>
 
-<label>Fecha entrada</label>
 <input type="date" id="entrada">
-
-<label>Fecha salida</label>
 <input type="date" id="salida">
 
-<button class="btn btn-primary mt-3">
-Reservar
+<button onclick="reservar()" class="btn btn-primary mt-3">
+Reservar y pagar
 </button>
+
+<h3 class="mt-4">Opiniones</h3>
+
+<textarea id="comentario" class="form-control mb-2"></textarea>
+
+<select id="rating" class="form-control mb-2">
+<option value="5">⭐⭐⭐⭐⭐</option>
+<option value="4">⭐⭐⭐⭐</option>
+<option value="3">⭐⭐⭐</option>
+<option value="2">⭐⭐</option>
+<option value="1">⭐</option>
+</select>
+
+<button onclick="enviarOpinion()" class="btn btn-success">
+Enviar opinión
+</button>
+
+<div id="listaOpiniones" class="mt-3"></div>
 
 </div>
 

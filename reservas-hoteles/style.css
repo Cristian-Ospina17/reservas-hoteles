@@ -101,3 +101,30 @@ padding:30px;
   color: #fff;
   font-weight: 500;
 }
+.hotel-card {
+  border-radius: 15px;
+  overflow: hidden;
+  transition: 0.3s;
+}
+
+.hotel-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.img-container img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  transition: 0.4s;
+}
+
+.hotel-card:hover img {
+  transform: scale(1.1);
+}
+
+.buscador {
+  border-radius: 30px;
+  padding: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
