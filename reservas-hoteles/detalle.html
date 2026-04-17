@@ -5,7 +5,7 @@
 <title>Detalle Hotel</title>
 
 <link rel="stylesheet" href="detalle.css">
-<script src="auth.js"></script>
+<script type="module" src="auth.js"></script>
 </head>
 
 <body onload="verificarAutenticacion()">
@@ -58,6 +58,11 @@ Reservar y pagar
 <button onclick="enviarOpinion()">Enviar opinión</button>
 
 <div id="listaOpiniones"></div>
+
+<!-- 🔥 BOTÓN NUEVO -->
+<button id="btnCSV" class="btn-reservar">
+Descargar opiniones CSV
+</button>
 
 </div>
 

@@ -1,11 +1,12 @@
 import { hoteles } from "./data.js";
-import { guardarOpinion, obtenerOpiniones } from "./reviews.js";
+import { guardarOpinion, obtenerOpiniones, exportarCSV } from "./reviews.js";
 
 const params = new URLSearchParams(window.location.search);
 const id = params.get("id");
 
 const hotel = hoteles[id];
 
+// cargar info del hotel
 document.getElementById("nombreHotel").innerText = hotel.nombre;
 document.getElementById("imagenHotel").src = hotel.imagen;
 document.getElementById("descripcion").innerText = hotel.descripcion;
@@ -22,6 +23,7 @@ function mostrarOpiniones() {
   });
 }
 
+// enviar opinión
 window.enviarOpinion = function () {
   const comentario = document.getElementById("comentario").value;
   const rating = document.getElementById("rating").value;
@@ -31,12 +33,17 @@ window.enviarOpinion = function () {
 };
 
 // pago
-window.mostrarPago = function(){
+window.mostrarPago = function () {
   document.getElementById("metodosPago").classList.remove("hidden");
-}
+};
 
-window.pagar = function(metodo){
+window.pagar = function (metodo) {
   alert("Pago realizado con " + metodo + " ✅");
-}
+};
 
+// 🔥 BOTÓN CSV (FORMA PRO)
+document.getElementById("btnCSV")
+  .addEventListener("click", exportarCSV);
+
+// inicializar
 mostrarOpiniones();
