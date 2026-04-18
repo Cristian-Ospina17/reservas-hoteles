@@ -8,8 +8,10 @@ const topContainer = document.getElementById("topHoteles");
 function mostrarHoteles(lista) {
   container.innerHTML = "";
 
-  lista.forEach((hotel, index) => {
-    const rating = promedioHotel(index);
+  lista.forEach((hotel) => {
+
+    const realIndex = hoteles.indexOf(hotel);
+    const rating = promedioHotel(realIndex);
 
     container.innerHTML += `
     <div class="col-md-4">
@@ -22,7 +24,7 @@ function mostrarHoteles(lista) {
           <p>⭐ ${rating || "Sin calificar"}</p>
           <p class="precio">$${hotel.precio}</p>
 
-          <a href="detalle.html?id=${index}" class="btn btn-primary w-100">
+          <a href="detalle.html?id=${realIndex}" class="btn btn-primary w-100">
             Ver detalles
           </a>
         </div>
