@@ -1,12 +1,22 @@
 import { hoteles } from "./data.js";
 import { guardarOpinion, obtenerOpiniones, exportarCSV } from "./reviews.js";
 
+// obtener id
 const params = new URLSearchParams(window.location.search);
-const id = params.get("id");
+const id = Number(params.get("id")); // 🔥 convertir a número
 
+console.log("ID recibido:", id);
+
+// obtener hotel
 const hotel = hoteles[id];
 
-// cargar info del hotel
+// 🔥 VALIDACIÓN (CLAVE)
+if (!hotel) {
+  document.body.innerHTML = "<h2>Hotel no encontrado ❌</h2>";
+  throw new Error("Hotel undefined");
+}
+
+// cargar info
 document.getElementById("nombreHotel").innerText = hotel.nombre;
 document.getElementById("imagenHotel").src = hotel.imagen;
 document.getElementById("descripcion").innerText = hotel.descripcion;
@@ -19,7 +29,7 @@ function mostrarOpiniones() {
   cont.innerHTML = "";
 
   lista.forEach(o => {
-    cont.innerHTML += `<div>⭐${o.rating} - ${o.comentario}</div>`;
+    cont.innerHTML += <div>⭐${o.rating} - ${o.comentario}</div>;
   });
 }
 
@@ -37,13 +47,24 @@ window.mostrarPago = function () {
   document.getElementById("metodosPago").classList.remove("hidden");
 };
 
+// strategy (lo de pagos está bien)
+import { ContextoPago } from "./ContextoPago.js";
+import { Nequi } from "./Nequi.js";
+import { Bancolombia } from "./Bancolombia.js";
+
 window.pagar = function (metodo) {
-  alert("Pago realizado con " + metodo + " ✅");
+
+  const contexto = new ContextoPago();
+
+  if (metodo === "Nequi") contexto.setStrategy(new Nequi());
+  if (metodo === "Bancolombia") contexto.setStrategy(new Bancolombia());
+
+  alert(contexto.ejecutarPago() + " ✅");
 };
 
-// 🔥 BOTÓN CSV (FORMA PRO)
+// CSV
 document.getElementById("btnCSV")
   .addEventListener("click", exportarCSV);
 
-// inicializar
+// iniciar
 mostrarOpiniones();
