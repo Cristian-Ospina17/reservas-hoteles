@@ -1,3 +1,6 @@
+import db from "./database.js";
+import { OpinionFactory } from "./factory.js";
+
 // GUARDAR OPINIÓN
 export function guardarOpinion(hotelId, comentario, rating) {
   const nuevaOpinion = OpinionFactory.crearOpinion(
@@ -14,6 +17,7 @@ export function guardarOpinion(hotelId, comentario, rating) {
 export function obtenerOpiniones(hotelId) {
   return db.opiniones.filter(o => o.hotelId == hotelId);
 }
+
 // PROMEDIO DE HOTEL
 export function promedioHotel(hotelId) {
   const opiniones = obtenerOpiniones(hotelId);
@@ -34,4 +38,28 @@ export function topHoteles(hoteles) {
     }))
     .sort((a, b) => b.rating - a.rating)
     .slice(0, 3);
+}
+
+//
+// 🔥 AQUI agregas esto (AL FINAL)
+//
+
+// EXPORTAR CSV
+export function exportarCSV() {
+
+  const opiniones = db.opiniones;
+
+  let csv = "hotelId,comentario,rating\n";
+
+  opiniones.forEach(o => {
+    csv += `${o.hotelId},"${o.comentario}",${o.rating}\n`;
+  });
+
+  const blob = new Blob([csv], { type: "text/csv" });
+  const url = URL.createObjectURL(blob);
+
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "opiniones.csv";
+  a.click();
 }
