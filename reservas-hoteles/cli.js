@@ -1,4 +1,4 @@
-mport readline from "readline";
+import readline from "readline";
 import { AuthService } from "./AuthService.js";
 
 const rl = readline.createInterface({
