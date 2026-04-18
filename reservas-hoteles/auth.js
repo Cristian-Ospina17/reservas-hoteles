@@ -1,74 +1,61 @@
-import db from "./database.js";
+import { AuthService } from "./AuthService.js";
 
-// REGISTRAR USUARIO
+const authService = new AuthService();
+
+// REGISTRO
 export function registrarUsuario(nombre, email, password) {
-
-  if (!nombre || !email || !password) {
-    alert('Completa todos los campos');
+  try {
+    authService.registrar(nombre, email, password);
+    alert("Cuenta creada correctamente");
+    return true;
+  } catch (e) {
+    alert(e.message);
     return false;
   }
-
-  if (db.usuarios.some(u => u.email === email)) {
-    alert('El email ya está registrado');
-    return false;
-  }
-
-  const nuevoUsuario = {
-    id: Date.now(),
-    nombre,
-    email,
-    password
-  };
-
-  db.usuarios.push(nuevoUsuario);
-  db.guardarUsuarios();
-
-  alert('Cuenta creada correctamente');
-  return true;
 }
 
 // LOGIN
 export function iniciarSesion(email, password) {
-
-  const usuario = db.usuarios.find(
-    u => u.email === email && u.password === password
-  );
-
-  if (usuario) {
-    localStorage.setItem('usuarioActual', JSON.stringify(usuario));
-    alert('Bienvenido ' + usuario.nombre);
+  try {
+    const usuario = authService.login(email, password);
+    authService.guardarSesion(usuario);
+    alert("Bienvenido " + usuario.nombre);
     return true;
+  } catch (e) {
+    alert(e.message);
+    return false;
   }
-
-  alert('Datos incorrectos');
-  return false;
 }
 
-// OBTENER USUARIO
+// OTROS
 export function obtenerUsuarioActual() {
-  return JSON.parse(localStorage.getItem('usuarioActual'));
+  return authService.obtenerUsuarioActual();
 }
 
-// CERRAR SESIÓN
 export function cerrarSesion() {
-  localStorage.removeItem('usuarioActual');
+  authService.cerrarSesion();
 }
 
-// VERIFICAR SI HAY USUARIO
 export function hayUsuarioLogueado() {
-  return obtenerUsuarioActual() !== null;
+  return authService.estaLogueado();
 }
 
-// PROTEGER RUTAS
 export function verificarAutenticacion() {
   if (!hayUsuarioLogueado()) {
-    window.location.href = 'login.html';
+    window.location.href = "login.html";
   }
 }
 
-// REDIRIGIR SI YA ESTÁ LOGUEADO
 export function redirigirSiLogueado() {
   if (hayUsuarioLogueado()) {
-    window.location.href = 'index.html';
+    window.location.href = "index.html";
   }
 }
+
+// GLOBAL (para HTML)
+window.iniciarSesion = iniciarSesion;
+window.registrarUsuario = registrarUsuario;
+window.obtenerUsuarioActual = obtenerUsuarioActual;
+window.cerrarSesion = cerrarSesion;
+window.verificarAutenticacion = verificarAutenticacion;
+window.redirigirSiLogueado = redirigirSiLogueado;
