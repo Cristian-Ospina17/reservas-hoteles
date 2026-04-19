@@ -29,7 +29,7 @@ function mostrarOpiniones() {
   cont.innerHTML = "";
 
   lista.forEach(o => {
-    cont.innerHTML += <div>⭐${o.rating} - ${o.comentario}</div>;
+    cont.innerHTML += `<div>⭐${o.rating} - ${o.comentario}</div>`;
   });
 }
 

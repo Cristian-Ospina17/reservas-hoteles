@@ -1,5 +1,5 @@
 import readline from "readline";
-import { AuthService } from "./AuthService.js";
+import { AuthService } from "./AuthService-cli.js";
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -21,7 +21,7 @@ function menu() {
 
             try {
               auth.registrar(nombre, email, password);
-              console.log("Usuario registrado");
+              console.log("Usuario registrado ✅");
             } catch (e) {
               console.log(e.message);
             }
