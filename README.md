@@ -84,3 +84,8 @@ El frontend hace peticiones a http://localhost:8080/api para:
 - Obtener reservas: GET /reservas
 - Cancelar reserva: PUT /reservas/cancelar/{id}
 El backend debe exponer estos endpoints y manejar tokens JWT para el flujo de reservas y autenticación.
+## Notas
+
+- Si se abre el proyecto con file://, algunos navegadores pueden bloquear la carga de módulos ES6. Usa un servidor local.
+- Las dependencias de UI se cargan desde CDN: Bootstrap 5 y Bootstrap Icons.
+- El frontend usa localStorage para almacenar el token de sesión.
