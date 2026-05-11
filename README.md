@@ -72,3 +72,14 @@ Opciones recomendadas:
 - login.html: Inicia sesión con un usuario existente.
 - registro.html: Registra una nueva cuenta de usuario.
 - admin.html: Panel de administración para crear y editar hoteles y habitaciones.
+## Integración con el backend
+
+El frontend hace peticiones a http://localhost:8080/api para:
+
+- Obtener hoteles: GET /hoteles
+- Obtener hotel por ID: GET /hoteles/{id}
+- Crear usuario: POST /usuarios
+- Login de usuario: POST /usuarios/login
+- Crear reserva: POST /reservas
+- Obtener reservas: GET /reservas
+- Cancelar reserva: PUT /reservas/cancelar/{id}
