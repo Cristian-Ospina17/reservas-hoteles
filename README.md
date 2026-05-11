@@ -33,3 +33,18 @@ StayEase es un frontend de reservas de hoteles creado con HTML, CSS y JavaScript
 - Visualización y cancelación de reservas
 - Panel de administración para crear y editar hoteles, y gestionar habitaciones
 - Notificaciones y validación de formularios
+## Estructura del proyecto
+
+- index.html: Página principal del frontend
+- detalle.html: Página de detalle de hotel y reserva
+- login.html: Página de inicio de sesión
+- registro.html: Página de registro de usuarios
+- admin.html: Panel administrativo para usuarios con role admin
+- style.css: Estilos globales
+- detalle.css: Estilos específicos de la página de detalle
+- app.js: Lógica principal de la página de inicio
+- detalle.js: Lógica de la página de detalle de hotel
+- auth.js: Gestión del flujo de autenticación y sesión en el frontend
+- api.js: Consumo de endpoints del backend
+- AuthService.js: Servicio de autenticación local
+- utils.js: Utilidades de notificaciones, validación y formato
