@@ -83,3 +83,4 @@ El frontend hace peticiones a http://localhost:8080/api para:
 - Crear reserva: POST /reservas
 - Obtener reservas: GET /reservas
 - Cancelar reserva: PUT /reservas/cancelar/{id}
+El backend debe exponer estos endpoints y manejar tokens JWT para el flujo de reservas y autenticación.
