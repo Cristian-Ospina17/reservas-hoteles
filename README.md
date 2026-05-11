@@ -63,3 +63,5 @@ Opciones recomendadas:
 - VS Code + Live Server
 - npx serve . desde la carpeta reservas-hoteles
 - python -m http.server 5500 desde la carpeta reservas-hoteles
+3. Abre http://localhost:5500 o la URL proporcionada por tu servidor.
+4. Navega en la app para buscar hoteles, iniciar sesión, reservar y administrar datos.
