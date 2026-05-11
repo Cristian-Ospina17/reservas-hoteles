@@ -48,3 +48,8 @@ StayEase es un frontend de reservas de hoteles creado con HTML, CSS y JavaScript
 - api.js: Consumo de endpoints del backend
 - AuthService.js: Servicio de autenticación local
 - utils.js: Utilidades de notificaciones, validación y formato
+## Requisitos
+
+- Backend compatible ejecutándose en http://localhost:8080/api
+- Navegador moderno con soporte para módulos ES6
+- Servidor estático para servir los archivos (recomendado)
