@@ -89,3 +89,6 @@ El backend debe exponer estos endpoints y manejar tokens JWT para el flujo de re
 - Si se abre el proyecto con file://, algunos navegadores pueden bloquear la carga de módulos ES6. Usa un servidor local.
 - Las dependencias de UI se cargan desde CDN: Bootstrap 5 y Bootstrap Icons.
 - El frontend usa localStorage para almacenar el token de sesión.
+## Autor
+
+StayEase - Proyecto de frontend de reservas de hoteles
