@@ -65,3 +65,10 @@ Opciones recomendadas:
 - python -m http.server 5500 desde la carpeta reservas-hoteles
 3. Abre http://localhost:5500 o la URL proporcionada por tu servidor.
 4. Navega en la app para buscar hoteles, iniciar sesión, reservar y administrar datos.
+## Páginas disponibles
+
+- index.html: Explora hoteles, busca por palabra clave y ve reservas activas.
+- detalle.html: Muestra información detallada del hotel, permite seleccionar fechas y reservar.
+- login.html: Inicia sesión con un usuario existente.
+- registro.html: Registra una nueva cuenta de usuario.
+- admin.html: Panel de administración para crear y editar hoteles y habitaciones.
