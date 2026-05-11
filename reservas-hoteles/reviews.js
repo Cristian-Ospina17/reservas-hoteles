@@ -39,27 +39,3 @@ export function topHoteles(hoteles) {
     .sort((a, b) => b.rating - a.rating)
     .slice(0, 3);
 }
-
-//
-// 🔥 AQUI agregas esto (AL FINAL)
-//
-
-// EXPORTAR CSV
-export function exportarCSV() {
-
-  const opiniones = db.opiniones;
-
-  let csv = "hotelId,comentario,rating\n";
-
-  opiniones.forEach(o => {
-    csv += `${o.hotelId},"${o.comentario}",${o.rating}\n`;
-  });
-
-  const blob = new Blob([csv], { type: "text/csv" });
-  const url = URL.createObjectURL(blob);
-
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = "opiniones.csv";
-  a.click();
-}

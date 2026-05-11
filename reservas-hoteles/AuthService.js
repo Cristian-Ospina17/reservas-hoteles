@@ -1,65 +1,79 @@
-import db from "./database.js";
-
 export class AuthService {
 
-  // REGISTRAR USUARIO
-  registrar(nombre, email, password) {
-
-    if (!nombre || !email || !password) {
-      throw new Error("Todos los campos son obligatorios");
-    }
-
-    const existe = db.usuarios.find(u => u.email === email);
-
-    if (existe) {
-      throw new Error("El correo ya está registrado");
-    }
-
-    const nuevoUsuario = {
-      id: Date.now(),
-      nombre,
-      email,
-      password
-    };
-
-    db.usuarios.push(nuevoUsuario);
-    db.guardarUsuarios();
-
-    return nuevoUsuario;
+  constructor() {
+    this.API_URL = "http://localhost:8080/api/usuarios";
   }
 
-  // LOGIN
-  login(email, password) {
+  async registrar(nombre, email, password) {
+    const respuesta = await fetch(this.API_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        nombre,
+        email,
+        password
+      })
+    });
 
-    const usuario = db.usuarios.find(
-      u => u.email === email && u.password === password
-    );
+    if (!respuesta.ok) {
+      throw new Error("No se pudo registrar el usuario.");
+    }
 
-    if (!usuario) {
+    return await respuesta.json();
+  }
+
+  async login(email, password) {
+    const respuesta = await fetch(`${this.API_URL}/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        email,
+        password
+      })
+    });
+
+    if (!respuesta.ok) {
       throw new Error("Credenciales incorrectas");
     }
+
+    const data = await respuesta.json();
+
+    const usuario = data.usuario || data;
+    const token = data.token || "";
+
+    if (!usuario.rol) {
+      usuario.rol = "USER";
+    }
+
+    this.guardarSesion(usuario, token);
 
     return usuario;
   }
 
-  // OBTENER USUARIO ACTUAL
-  obtenerUsuarioActual() {
-    return JSON.parse(localStorage.getItem("usuarioActual"));
-  }
-
-  // GUARDAR SESIÓN
-  guardarSesion(usuario) {
+  guardarSesion(usuario, token) {
     localStorage.setItem("usuarioActual", JSON.stringify(usuario));
+    localStorage.setItem("token", token);
   }
 
-  // CERRAR SESIÓN
+  obtenerUsuarioActual() {
+    const usuario = localStorage.getItem("usuarioActual");
+    return usuario ? JSON.parse(usuario) : null;
+  }
+
+  obtenerToken() {
+    return localStorage.getItem("token");
+  }
+
   cerrarSesion() {
     localStorage.removeItem("usuarioActual");
+    localStorage.removeItem("token");
   }
 
-  // VALIDAR SI HAY SESIÓN
   estaLogueado() {
     return this.obtenerUsuarioActual() !== null;
   }
-
 }

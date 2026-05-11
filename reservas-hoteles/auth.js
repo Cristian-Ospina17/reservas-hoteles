@@ -1,33 +1,32 @@
 import { AuthService } from "./AuthService.js";
+import { ValidadorFormularios } from "./utils.js";
 
 const authService = new AuthService();
 
-// REGISTRO
-export function registrarUsuario(nombre, email, password) {
-  try {
-    authService.registrar(nombre, email, password);
-    alert("Cuenta creada correctamente");
-    return true;
-  } catch (e) {
-    alert(e.message);
-    return false;
+export async function registrarUsuario(nombre, email, password) {
+  if (!nombre || nombre.trim().length < 3) {
+    throw new Error("El nombre debe tener al menos 3 caracteres");
   }
+
+  if (!ValidadorFormularios.validarEmail(email)) {
+    throw new Error("El email no es válido");
+  }
+
+  if (!ValidadorFormularios.validarPassword(password)) {
+    throw new Error("La contraseña debe tener al menos 6 caracteres");
+  }
+
+  return await authService.registrar(nombre, email, password);
 }
 
-// LOGIN
-export function iniciarSesion(email, password) {
-  try {
-    const usuario = authService.login(email, password);
-    authService.guardarSesion(usuario);
-    alert("Bienvenido " + usuario.nombre);
-    return true;
-  } catch (e) {
-    alert(e.message);
-    return false;
+export async function iniciarSesion(email, password) {
+  if (!email || !password) {
+    throw new Error("Email y contraseña requeridos");
   }
+
+  return await authService.login(email, password);
 }
 
-// OTROS
 export function obtenerUsuarioActual() {
   return authService.obtenerUsuarioActual();
 }
@@ -47,12 +46,17 @@ export function verificarAutenticacion() {
 }
 
 export function redirigirSiLogueado() {
-  if (hayUsuarioLogueado()) {
-    window.location.href = "index.html";
+  const usuario = obtenerUsuarioActual();
+
+  if (usuario) {
+    if (usuario.rol === "ADMIN") {
+      window.location.href = "admin.html";
+    } else {
+      window.location.href = "index.html";
+    }
   }
 }
 
-// GLOBAL (para HTML)
 window.iniciarSesion = iniciarSesion;
 window.registrarUsuario = registrarUsuario;
 window.obtenerUsuarioActual = obtenerUsuarioActual;

@@ -1,19 +1,47 @@
 body{
 
-font-family:Arial;
-background:#f5f5f5;
+font-family: Arial, sans-serif;
+background: linear-gradient(135deg, #091426 0%, #11193a 45%, #0f223f 100%);
+color: #eceff1;
 padding-top:70px;
 
 }
 
+.navbar {
+  background-color: rgba(6, 18, 44, 0.95) !important;
+  border-bottom: 1px solid rgba(245, 192, 79, 0.25);
+}
+
+.navbar-brand {
+  color: #f5c04f !important;
+  font-weight: bold;
+  letter-spacing: 0.4px;
+}
+
+.navbar-brand img {
+  border: 2px solid rgba(245, 192, 79, 0.9);
+  padding: 4px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 50%;
+  box-shadow: 0 0 18px rgba(245, 192, 79, 0.22);
+  width: 44px;
+  height: 44px;
+}
+
+.navbar-nav .nav-link {
+  color: #f0f0f0 !important;
+}
+
 .hero{
 
-background-image:url("https://images.unsplash.com/photo-1566073771259-6a8506099945");
+background-image:
+linear-gradient(180deg, rgba(6, 16, 42, 0.55), rgba(8, 12, 26, 0.7)),
+url("https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1600&q=80");
 
 background-size:cover;
 background-position:center;
 
-height:450px;
+height:520px;
 
 position:relative;
 
@@ -21,7 +49,7 @@ position:relative;
 
 .overlay{
 
-background:rgba(0,0,0,0.4);
+background:rgba(8, 14, 40, 0.35);
 
 height:100%;
 
@@ -69,23 +97,34 @@ margin-bottom:10px;
 
 .servicio{
 
-background:white;
+background: rgba(20, 33, 69, 0.92);
 
 border-radius:10px;
 
 padding:20px;
 
-box-shadow:0 2px 10px rgba(0,0,0,0.1);
+box-shadow:0 2px 10px rgba(0,0,0,0.45);
 
+color: #f0f0f0;
+
+}
+
+.servicio:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3), 0 0 12px rgba(79, 70, 229, 0.14);
 }
 
 .footer{
 
-background:#eee;
+background: linear-gradient(135deg, #07111f, #0f172a);
 
 margin-top:60px;
 
 padding:30px;
+
+color: #d0d7df;
+
+border-top: 2px solid rgba(245, 192, 79, 0.25);
 
 }
 
@@ -102,25 +141,73 @@ padding:30px;
   font-weight: 500;
 }
 .hotel-card {
-  border-radius: 15px;
+  border-radius: 20px;
   overflow: hidden;
   transition: 0.3s;
+  margin-bottom: 30px;
+  background: rgba(12, 22, 52, 0.92);
+  border: 1px solid rgba(255,255,255,0.1);
 }
 
 .hotel-card:hover {
   transform: translateY(-10px);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  box-shadow: 0 10px 35px rgba(0,0,0,0.30), 0 0 30px rgba(59, 130, 246, 0.14);
 }
 
-.img-container img {
+.hotel-card img,
+.hotel-card .card-img-top {
   width: 100%;
-  height: 220px;
+  height: 260px;
   object-fit: cover;
   transition: 0.4s;
 }
 
-.hotel-card:hover img {
-  transform: scale(1.1);
+.hotel-card:hover img,
+.hotel-card:hover .card-img-top {
+  transform: scale(1.06);
+}
+
+.hotel-card .card-body {
+  background: rgba(5, 12, 31, 0.95);
+  color: #e8eef5;
+  padding: 1.5rem;
+}
+
+.hotel-card .card-body h5 {
+  color: #ffffff;
+  font-size: 1.2rem;
+  margin-bottom: 0.75rem;
+}
+
+.hotel-card .card-body p {
+  color: #cbd5e1;
+  margin-bottom: 0.65rem;
+  line-height: 1.5;
+}
+
+.hotel-card .precio {
+  color: #f5c04f;
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.hotel-card .btn-primary {
+  background: linear-gradient(135deg, #f5c04f, #d4a017);
+  border: none;
+  color: #111;
+  font-weight: 700;
+  border-radius: 12px;
+  transition: 0.3s;
+}
+
+.hotel-card .btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(245, 192, 79, 0.3);
+}
+
+#hotelContainer .col-md-4,
+#topHoteles .col-md-4 {
+  margin-bottom: 30px;
 }
 
 .buscador {
@@ -139,23 +226,270 @@ body.auth-page {
 
 /* Tarjeta del formulario */
 .auth-container {
-  background: white;
+  background: rgba(6, 16, 46, 0.95);
   padding: 40px;
-  border-radius: 15px;
-  box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+  border-radius: 20px;
+  border: 1px solid rgba(245,192,79,0.18);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.35);
   width: 100%;
+  max-width: 420px;
+  color: #e2e8f0;
+}
+
+.auth-container h2 {
+  color: #f5c04f;
+}
+
+.auth-container label {
+  color: #cbd5e1;
+  font-weight: 500;
+}
+
+.auth-container .form-control {
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 12px;
+  color: #f8fafc;
+}
+
+.auth-container .form-control::placeholder {
+  color: rgba(226, 232, 240, 0.6);
+}
+
+.auth-container .form-control:focus {
+  background: rgba(255,255,255,0.12);
+  border-color: #f5c04f;
+  box-shadow: 0 0 12px rgba(245,192,79,0.18);
+  color: #ffffff;
+}
+
+.auth-container button {
+  border-radius: 12px;
+  padding: 12px;
+  font-weight: 700;
+}
+
+.auth-container a {
+  color: #f5c04f;
+}
+
+.auth-container .text-center {
+  color: #dbeafe;
+}
+
+/* Estilos para reservas */
+.reserva-card {
+  border-radius: 15px;
+  overflow: hidden;
+  transition: 0.3s;
+  background: white;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.reserva-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.reserva-card img {
+  height: 150px;
+  object-fit: cover;
+}
+
+/* Password toggle */
+.password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-wrapper input {
+  width: 100%;
+  padding-right: 40px;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 12px;
+  cursor: pointer;
+  font-size: 16px;
+  user-select: none;
+  transition: 0.2s;
+  border: none;
+  background: none;
+  padding: 0;
+  color: #6c757d;
+}
+
+.toggle-password:hover {
+  color: #f5c04f;
+}
+
+.toggle-icon:hover {
+  opacity: 0.8;
+}
+
+/* Admin Panel */
+.admin-container {
+  margin-top: 100px;
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.admin-card {
+  background: rgba(8, 16, 38, 0.96);
+  border-radius: 18px;
+  padding: 28px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+  transition: 0.3s;
+  border: 1px solid rgba(245, 192, 79, 0.18);
+}
+
+.admin-card:hover {
+  box-shadow: 0 12px 36px rgba(0,0,0,0.4);
+  transform: translateY(-3px);
+}
+
+.admin-card h3 {
+  color: #f5c04f;
+  margin-bottom: 20px;
+  border-bottom: 2px solid rgba(245, 192, 79, 0.4);
+  padding-bottom: 10px;
+}
+
+.admin-card.stat {
+  text-align: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 36px;
+  }
+  .buscador {
+    max-width: 90%;
+  }
+  .auth-container {
+    width: 90%;
+    max-width: 400px;
+  }
+  .card {
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-content h1 {
+    font-size: 28px;
+  }
+  .hero {
+    height: 300px;
+  }
+  .auth-container h2 {
+    font-size: 24px;
+  }
+}
+
+.admin-card.stat p {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.admin-card.stat h2 {
+  font-size: 36px;
+  margin: 10px 0;
+}
+
+.usuario-item, .reserva-item {
+  background: rgba(18, 34, 73, 0.9);
+  padding: 14px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  border-left: 4px solid #f5c04f;
+  transition: 0.2s;
+  color: #e2e8f0;
+}
+
+.usuario-item:hover, .reserva-item:hover {
+  background: rgba(22, 42, 92, 0.95);
+}
+
+.opinion-item {
+  background: rgba(18, 34, 73, 0.9);
+  padding: 14px;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  border-left: 4px solid #f5c04f;
+  color: #e2e8f0;
+}
+
+.opinion-item:hover {
+  background: rgba(22, 42, 92, 0.95);
+}
+
+.usuarios-list, .reservas-list, .opiniones-list {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+/* Toast Notifications */
+.toast-notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 15px 20px;
+  border-radius: 10px;
+  color: white;
+  font-weight: bold;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity 0.3s ease;
   max-width: 400px;
 }
 
-/* Botones más modernos */
-.auth-container button {
-  border-radius: 10px;
-  padding: 10px;
-  font-weight: bold;
+.toast-notification.show {
+  opacity: 1;
 }
 
-/* Inputs más bonitos */
-.auth-container input {
-  border-radius: 10px;
-  padding: 10px;
+.toast-notification.toast-success {
+  background: linear-gradient(45deg, #10b981, #059669);
+}
+
+.toast-notification.toast-danger {
+  background: linear-gradient(45deg, #ef4444, #dc2626);
+}
+
+.toast-notification.toast-info {
+  background: linear-gradient(45deg, #3b82f6, #2563eb);
+}
+
+.logo-container{
+  width: 52px;
+  height: 52px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  box-shadow: 0 0 14px rgba(245, 192, 79, 0.15);
+  border: 1px solid rgba(245, 192, 79, 0.18);
+}
+
+.logo-img{
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+}
+
+.logo-text{
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: #f5c04f;
+  letter-spacing: 0.5px;
 }
