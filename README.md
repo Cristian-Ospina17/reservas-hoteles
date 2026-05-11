@@ -53,3 +53,13 @@ StayEase es un frontend de reservas de hoteles creado con HTML, CSS y JavaScript
 - Backend compatible ejecutándose en http://localhost:8080/api
 - Navegador moderno con soporte para módulos ES6
 - Servidor estático para servir los archivos (recomendado)
+## Cómo usar
+
+1. Asegúrate de tener el backend en ejecución en http://localhost:8080/api.
+2. Sirve el directorio reservas-hoteles con un servidor estático.
+
+Opciones recomendadas:
+
+- VS Code + Live Server
+- npx serve . desde la carpeta reservas-hoteles
+- python -m http.server 5500 desde la carpeta reservas-hoteles
